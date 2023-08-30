@@ -1,0 +1,22 @@
+datasource db {
+    url      = env("DATABASE_URL")
+    provider = "postgresql"
+}
+
+
+generator create {
+    provider = "prisma-client-js"
+    previewFeatures = ["postgresqlExtensions"]
+}
+
+
+model Car {
+    id        String   @map("id")         @db.Uuid         @default(uuid())
+    title     String   @map("title")      @db.VarChar(256)
+    price     String   @map("prise")      @db.VarChar(64)
+    createdAt DateTime @map("created_at")                   @default(now())
+
+    @@id([id]) 
+    @@map("cars")
+}
+
